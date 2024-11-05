@@ -15,10 +15,10 @@ Future<void> main() async {
 
     // Register dependencies/services for app consumption
     setupLocator();
-    FlutterError.onError = GetIt.instance.get<CrashReportingService>().onError;
+    FlutterError.onError = getIt.get<CrashReportingService>().onError;
     runApp(const MyGovApp());
   }, (error, stackTrace) {
-    GetIt.instance.get<CrashReportingService>().onCrash(error, stackTrace);
+    getIt.get<CrashReportingService>().onCrash(error, stackTrace);
   });
 }
 
