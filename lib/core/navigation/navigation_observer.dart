@@ -1,25 +1,19 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-final appNavigatorObserver = AppNavigationObserver();
+import 'package:gov_client_app/utils/logger.dart';
 
 class AppNavigationObserver extends NavigatorObserver {
-  static final AppNavigationObserver _instance =
-      AppNavigationObserver._internal();
   final List<Route<dynamic>> _navigationStack = [];
-
-  factory AppNavigationObserver() {
-    return _instance;
-  }
-
-  AppNavigationObserver._internal();
 
   List<Route<dynamic>> get navigationStack =>
       List.unmodifiable(_navigationStack);
 
   void logStack() {
-    print('Current Navigation Stack:');
-    for (var route in _navigationStack) {
-      print(route.settings.name);
+    if (kDebugMode) {
+      Logger.info('Current Navigation Stack:');
+      for (var route in _navigationStack) {
+        Logger.info(route.settings.name);
+      }
     }
   }
 

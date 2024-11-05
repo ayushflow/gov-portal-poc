@@ -8,15 +8,6 @@ import 'package:gov_client_app/core/navigation/redirection_data/vehicle_registra
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class AppNavigationService {
-  AppNavigationService._privateConstructor();
-
-  static final AppNavigationService _instance =
-      AppNavigationService._privateConstructor();
-
-  factory AppNavigationService() {
-    return _instance;
-  }
-
   void pop() {
     navigatorKey.currentState?.pop();
   }
