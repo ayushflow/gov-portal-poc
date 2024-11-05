@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:gov_client_app/core/crash_analytics/crash_reporting_service.dart';
 import 'package:gov_client_app/core/di/service_locator.dart';
 import 'package:gov_client_app/core/events/events.dart';
 import 'package:gov_client_app/core/navigation/app_navigation_service.dart';
@@ -6,12 +9,16 @@ import 'package:gov_client_app/core/navigation/navigation_observer.dart';
 import 'package:gov_client_app/core/navigation/router.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(() {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  // Register dependencies/services for app consumption
-  setupLocator();
-
-  runApp(const MyGovApp());
+    // Register dependencies/services for app consumption
+    setupLocator();
+    FlutterError.onError = getIt.get<CrashReportingService>().onError;
+    runApp(const MyGovApp());
+  }, (error, stackTrace) {
+    getIt.get<CrashReportingService>().onCrash(error, stackTrace);
+  });
 }
 
 class MyGovApp extends StatefulWidget {
@@ -23,6 +30,7 @@ class MyGovApp extends StatefulWidget {
 
 class _MyGovAppState extends State<MyGovApp> {
   final _eventService = getIt<EventService>();
+
   @override
   void initState() {
     _eventService.init();
