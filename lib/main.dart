@@ -22,6 +22,13 @@ Future<void> main() async {
       (options) {
         options.dsn =
             'https://893b2224d34937c34ca40528ba1b5e9f@o4508246912204800.ingest.de.sentry.io/4508246915154000';
+        options.tracesSampleRate = 1.0;
+
+        options.tracesSampler = (samplingContext) {
+          // return a number between 0 and 1 or null (to fallback
+          // to configured value)
+          return 0.3;
+        };
       },
     );
     FlutterError.onError = getIt.get<CrashReportingManager>().onError;
