@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:gov_client_app/core/analytics/analytics.dart';
+import 'package:gov_client_app/core/analytics/sentry_analytics.dart';
 import 'package:gov_client_app/core/crash_analytics/crash_reporting_service.dart';
 import 'package:gov_client_app/core/crash_analytics/sentry_reporting_service.dart';
 import 'package:gov_client_app/core/di/service_locator.dart';
@@ -15,6 +17,7 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     setupLocator();
     initCrashServices();
+    initAnalyticsServices();
     await SentryFlutter.init(
       (options) {
         options.dsn =
@@ -26,6 +29,12 @@ Future<void> main() async {
   }, (exception, stackTrace) async {
     getIt.get<CrashReportingManager>().onCrash(exception, stackTrace);
   });
+}
+
+void initAnalyticsServices() {
+  getIt.get<AnalyticsManager>()
+    ..register(LoggerAnalyticsService())
+    ..register(SentryAnalyticsService());
 }
 
 void initCrashServices() {

@@ -30,7 +30,19 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  sentry_dart_plugin: ^2.0.0
 
 flutter:
-
   uses-material-design: true
+
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: true
+  upload_sources: true
+  project: "gov-portal-poc"
+  org: "flutterflow-7d"
+  auth_token: "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"
+  wait_for_processing: false
+  web_build_path: build/web
+  commits: auto
+  ignore_missing: true
