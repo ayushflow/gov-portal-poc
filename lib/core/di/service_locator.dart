@@ -18,8 +18,8 @@ void setupLocator() {
   getIt.registerLazySingleton<EventService>(
     () => EventService(),
   );
-  getIt.registerLazySingleton<CrashReportingService>(
-    () => LoggerCrashReportingService(),
+  getIt.registerLazySingleton<CrashReportingManager>(
+    () => CrashReportingManager(),
   );
 }
 

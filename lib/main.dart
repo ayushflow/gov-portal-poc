@@ -2,23 +2,36 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gov_client_app/core/crash_analytics/crash_reporting_service.dart';
+import 'package:gov_client_app/core/crash_analytics/sentry_reporting_service.dart';
 import 'package:gov_client_app/core/di/service_locator.dart';
 import 'package:gov_client_app/core/events/events.dart';
 import 'package:gov_client_app/core/navigation/app_navigation_service.dart';
 import 'package:gov_client_app/core/navigation/navigation_observer.dart';
 import 'package:gov_client_app/core/navigation/router.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
-  runZonedGuarded(() {
+  await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-
-    // Register dependencies/services for app consumption
     setupLocator();
-    FlutterError.onError = getIt.get<CrashReportingService>().onError;
+    initCrashServices();
+    await SentryFlutter.init(
+      (options) {
+        options.dsn =
+            'https://893b2224d34937c34ca40528ba1b5e9f@o4508246912204800.ingest.de.sentry.io/4508246915154000';
+      },
+    );
+    FlutterError.onError = getIt.get<CrashReportingManager>().onError;
     runApp(const MyGovApp());
-  }, (error, stackTrace) {
-    getIt.get<CrashReportingService>().onCrash(error, stackTrace);
+  }, (exception, stackTrace) async {
+    getIt.get<CrashReportingManager>().onCrash(exception, stackTrace);
   });
+}
+
+void initCrashServices() {
+  getIt.get<CrashReportingManager>()
+    ..register(LoggerCrashReportingService())
+    ..register(SentryReportingService());
 }
 
 class MyGovApp extends StatefulWidget {
