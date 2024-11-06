@@ -53,6 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                'Result Text',
+                key: ValueKey('result_text_key'),
+              ),
               const InputFieldGenericTextWidget(
                 labelText: 'Mobile',
                 errorText: 'Enter correct mobile number',
@@ -60,6 +64,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                key: ValueKey('input_field_key'),
+
                 controller: _passwordController,
                 decoration: const InputDecoration(
                   labelText: 'Password',
@@ -75,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 24),
               ElevatedButton(
+                key: ValueKey('submit_button_key'),
                 onPressed: _handleLogin,
                 child: const Text('Login'),
               ),

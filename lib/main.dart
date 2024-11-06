@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_driver/driver_extension.dart';
 import 'package:gov_client_app/core/analytics/analytics.dart';
 import 'package:gov_client_app/core/analytics/sentry_analytics.dart';
 import 'package:gov_client_app/core/crash_analytics/crash_reporting_service.dart';
@@ -13,6 +14,7 @@ import 'package:gov_client_app/core/navigation/router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
+  enableFlutterDriverExtension();
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     setupLocator();
