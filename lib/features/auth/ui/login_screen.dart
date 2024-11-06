@@ -32,10 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       // TODO: Implement login logic
     }
-
-    Future.delayed(const Duration(seconds: 5)).then((_) {
-      throw Exception('Handle login api exception simulation');
-    });
   }
 
   @override
