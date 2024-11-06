@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gov_client_app/core/analytics/log.dart';
+import 'package:gov_client_app/core/di/service_locator.dart';
+import 'package:gov_portal_core_u_i_input/input_fields/input_field_generic_text/input_field_generic_text_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? initialMessage;
@@ -25,9 +28,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _handleLogin() {
+    logAnalytics('functionCall', {'name': 'handleLogin'});
     if (_formKey.currentState!.validate()) {
       // TODO: Implement login logic
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    logAnalytics('initState', {'page': 'LoginPage'});
   }
 
   @override
@@ -43,19 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
+              const InputFieldGenericTextWidget(
+                labelText: 'Mobile',
+                errorText: 'Enter correct mobile number',
+                isMandatory: true,
               ),
               const SizedBox(height: 16),
               TextFormField(
