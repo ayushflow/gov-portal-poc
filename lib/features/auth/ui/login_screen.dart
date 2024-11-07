@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gov_client_app/core/analytics/log.dart';
-import 'package:gov_client_app/core/di/service_locator.dart';
-import 'package:gov_portal_core_u_i_input/input_fields/input_field_generic_text/input_field_generic_text_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? initialMessage;
@@ -45,6 +43,13 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/driving-license-home');
+              },
+              child: Text('Apply for Driving license'))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,10 +58,19 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const InputFieldGenericTextWidget(
-                labelText: 'Mobile',
-                errorText: 'Enter correct mobile number',
-                isMandatory: true,
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               TextFormField(

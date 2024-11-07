@@ -1,72 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:gov_client_app/core/analytics/log.dart';
+import 'package:gov_driving_license_portal/component/appbar/driving_learning_app_bar/driving_learning_app_bar_widget.dart';
+import 'package:gov_driving_license_portal/components/form_apply_license_widget.dart';
+import 'package:gov_portal_core_u_i_nav_cvlv4t/components/generic_footer_componenet_widget.dart';
 
-class DrivingLicenseHomeScreen extends StatelessWidget {
-  const DrivingLicenseHomeScreen({super.key});
+class DrivingLicenseHomeScreen extends StatefulWidget {
+  const DrivingLicenseHomeScreen({
+    super.key,
+  });
+
+  @override
+  State<DrivingLicenseHomeScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<DrivingLicenseHomeScreen> {
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    logAnalytics('initState', {'page': 'Driving Licence Home Screen'});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Driving License Services'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildActionButton(
-              context,
-              'Apply for Driving License',
-              Icons.add,
-              () {
-                // TODO: Implement apply functionality
-              },
+      body: ListView(
+        children: [
+          DrivingLearningAppBarWidget(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FormApplyLicenseWidget(),
             ),
-            const SizedBox(height: 16),
-            _buildActionButton(
-              context,
-              'Track Application',
-              Icons.track_changes,
-              () {
-                // TODO: Implement track functionality
-              },
-            ),
-            const SizedBox(height: 16),
-            _buildActionButton(
-              context,
-              'Download License',
-              Icons.download,
-              () {
-                // TODO: Implement download functionality
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActionButton(
-    BuildContext context,
-    String title,
-    IconData icon,
-    VoidCallback onPressed,
-  ) {
-    return SizedBox(
-      width: double.infinity,
-      height: 56,
-      child: ElevatedButton.icon(
-        onPressed: onPressed,
-        icon: Icon(icon),
-        label: Text(
-          title,
-          style: const TextStyle(fontSize: 16),
-        ),
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
           ),
-        ),
+          GenericFooterComponenetWidget()
+        ],
       ),
     );
   }

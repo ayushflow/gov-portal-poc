@@ -14,17 +14,22 @@ dependencies:
   cupertino_icons: ^1.0.8
   get_it: 8.0.2
   sentry_flutter: ^8.9.0
-  gov_portal_core_u_i_presentation:
-    git:
-      url: git@github.com:ff-vivek/gov_portal_core_u_i_presentation.git
+#  gov_portal_core_u_i_presentation:
+#    git:
+#      url: git@github.com:ff-vivek/gov_portal_core_u_i_presentation.git
+#
+#  gov_portal_core_u_i_input:
+#    git:
+#      url: git@github.com:ff-vivek/gov_portal_core_u_i_input.git
+#
+#  gov_portal_core_u_i_nav:
+#    git:
+#      url: git@github.com:ff-vivek/gov_portal_core_u_i_nav.git
 
-  gov_portal_core_u_i_input:
+  gov_driving_license_portal:
     git:
-      url: git@github.com:ff-vivek/gov_portal_core_u_i_input.git
+      url: git@github.com:ff-vivek/gov_driving_license_portal_lib.git
 
-  gov_portal_core_u_i_nav:
-    git:
-      url: git@github.com:ff-vivek/gov_portal_core_u_i_nav.git
 
 dev_dependencies:
   flutter_test:
@@ -32,6 +37,11 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   sentry_dart_plugin: ^2.0.0
 
+#dependency_overrides:
+#  ff_theme:
+#    git:
+#      url: git@github.com:ff-vivek/gov_driving_license_portal_lib.git
+#      path: dependency/ff_theme
 flutter:
   uses-material-design: true
 
