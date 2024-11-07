@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gov_client_app/core/analytics/log.dart';
 import 'package:gov_driving_license_portal/component/appbar/driving_learning_app_bar/driving_learning_app_bar_widget.dart';
+import 'package:gov_driving_license_portal/component/widgets/continue_journey_cta/continue_journey_cta_widget.dart';
 import 'package:gov_driving_license_portal/components/form_apply_license_widget.dart';
 import 'package:gov_portal_core_u_i_nav_cvlv4t/components/generic_footer_componenet_widget.dart';
 
@@ -30,16 +31,27 @@ class _LoginScreenState extends State<DrivingLicenseHomeScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          DrivingLearningAppBarWidget(),
+          const DrivingLearningAppBarWidget(),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: FormApplyLicenseWidget(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ContinueJourneyCtaWidget(
+                      onSuccess: (userJourneyId) async {},
+                      onFailure: () async {},
+                      journeyId: 'new-driving-license'),
+                  const Divider(),
+                  const FormApplyLicenseWidget(),
+                ],
+              ),
             ),
           ),
-          GenericFooterComponenetWidget()
+          const GenericFooterComponenetWidget()
         ],
       ),
+
     );
   }
 }

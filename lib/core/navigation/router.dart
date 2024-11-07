@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gov_client_app/core/navigation/redirection_data/login_redirect_data.dart';
 import 'package:gov_client_app/features/auth/ui/login_screen.dart';
 import 'package:gov_client_app/features/dashboard/ui/dashboard_screen.dart';
+import 'package:gov_client_app/features/driving_license/ui/continue_journey.dart';
 import 'package:gov_client_app/features/driving_license/ui/driving_license_home_screen.dart';
 import 'package:gov_client_app/features/verhicle_registration/ui/vehicle_registration_home_screen.dart';
 
@@ -23,6 +24,10 @@ class AppRouter {
       case '/vehicle-registration-home':
         return MaterialPageRoute(
           builder: (_) => const VehicleRegistrationHomeScreen(),
+        );
+      case '/continue_journey':
+        return MaterialPageRoute(
+          builder: (_) => const ContinueJourneyPage(),
         );
       default:
         return buildUnknownRoute(settings);

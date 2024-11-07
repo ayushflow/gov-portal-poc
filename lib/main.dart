@@ -80,7 +80,7 @@ class _MyGovAppState extends State<MyGovApp> {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: '/driving-license-home',
       navigatorKey: navigatorKey,
       navigatorObservers: [
         getIt<AppNavigationObserver>(),
