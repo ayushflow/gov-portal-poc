@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gov_client_app/core/analytics/log.dart';
 import 'package:gov_client_app/core/widget/deferred_widget.dart';
 import 'package:gov_driving_license_portal/component/appbar/driving_learning_app_bar/driving_learning_app_bar_widget.dart'
@@ -45,7 +46,7 @@ class _LoginScreenState extends State<DrivingLicenseHomeScreen> {
                 children: [
                   ContinueJourneyCtaWidget(
                       onSuccess: (userJourneyId) async {
-                        Navigator.of(context).pushNamed('/continue-journey');
+                        context.go('/continue-journey');
                       },
                       onFailure: () async {
                         ScaffoldMessenger.of(context).showSnackBar(

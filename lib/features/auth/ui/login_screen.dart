@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gov_client_app/core/analytics/log.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -46,9 +47,9 @@ class _LoginScreenState extends State<LoginScreen> {
         actions: [
           ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('/driving-license-home');
+                context.go('/driving-license-home');
               },
-              child: Text('Apply for Driving license'))
+              child: const Text('Apply for Driving license'))
         ],
       ),
       body: Padding(

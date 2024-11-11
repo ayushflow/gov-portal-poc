@@ -7,9 +7,7 @@ import 'package:gov_client_app/core/crash_analytics/crash_reporting_service.dart
 import 'package:gov_client_app/core/crash_analytics/sentry_reporting_service.dart';
 import 'package:gov_client_app/core/di/service_locator.dart';
 import 'package:gov_client_app/core/events/events.dart';
-import 'package:gov_client_app/core/navigation/app_navigation_service.dart';
-import 'package:gov_client_app/core/navigation/navigation_observer.dart';
-import 'package:gov_client_app/core/navigation/router.dart';
+import 'package:gov_client_app/core/navigation/go_router_config.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
@@ -74,19 +72,13 @@ class _MyGovAppState extends State<MyGovApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'MyGov',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/driving-license-home',
-      navigatorKey: navigatorKey,
-      navigatorObservers: [
-        getIt<AppNavigationObserver>(),
-      ],
-      onGenerateRoute: AppRouter.generateRoute,
-      onUnknownRoute: AppRouter.onUnknownRoute,
+      routerConfig: router,
     );
   }
 }
