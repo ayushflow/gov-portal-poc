@@ -49,7 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 context.go('/driving-license-home');
               },
-              child: const Text('Apply for Driving license'))
+              child: const Text('Apply for Driving license')),
+          ElevatedButton(
+              onPressed: () {
+                context.go('/forms');
+              },
+              child: const Text('Go to forms'))
         ],
       ),
       body: Padding(

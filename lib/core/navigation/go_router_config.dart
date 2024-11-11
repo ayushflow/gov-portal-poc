@@ -5,6 +5,8 @@ import 'package:gov_client_app/features/auth/ui/login_screen.dart';
 import 'package:gov_client_app/features/dashboard/ui/dashboard_screen.dart';
 import 'package:gov_client_app/features/driving_license/ui/continue_journey.dart';
 import 'package:gov_client_app/features/driving_license/ui/driving_license_home_screen.dart';
+import 'package:gov_client_app/features/forms/forms_landing_page.dart';
+import 'package:gov_client_app/features/forms/forms_page.dart';
 import 'package:gov_client_app/features/verhicle_registration/ui/vehicle_registration_home_screen.dart';
 
 // TODO:: add guard routes
@@ -50,5 +52,13 @@ final router = GoRouter(
         return ContinueJourneyPage();
       },
     ),
+    GoRoute(path: '/forms', builder: (_, __) => FormsLandingPage(), routes: [
+      GoRoute(
+        path: 'form/:formId',
+        builder: (_, state) => FormsPage(
+          id: state.pathParameters['formId'] ?? '-',
+        ),
+      ),
+    ])
   ],
 );
