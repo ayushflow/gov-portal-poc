@@ -21,9 +21,8 @@ Future<void> main() async {
     await SentryFlutter.init(
       (options) {
         options.dsn =
-            'https://893b2224d34937c34ca40528ba1b5e9f@o4508246912204800.ingest.de.sentry.io/4508246915154000';
+            'http://d832e01eba4eb404fcad65df98cf54be@127.0.0.1:9000/1';
         options.tracesSampleRate = 1.0;
-
         options.tracesSampler = (samplingContext) {
           // return a number between 0 and 1 or null (to fallback
           // to configured value)
@@ -90,3 +89,8 @@ class _MyGovAppState extends State<MyGovApp> {
     );
   }
 }
+
+// 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
+
+// Client Secret: 634c41d68f555560c4c16a72deee8157d59981380eeadfa6b895f63c87058c43
+// Client iD: eaaac3b52c2e289431ab750a94dd2dacb4e596bb44c87ab0f35924093cb7307e

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gov_client_app/core/analytics/log.dart';
+import 'package:gov_client_app/core/crash_analytics/crash_reporting_service.dart';
+import 'package:gov_client_app/core/di/service_locator.dart';
 import 'package:gov_driving_license_portal/component/appbar/driving_learning_app_bar/driving_learning_app_bar_widget.dart';
 import 'package:gov_driving_license_portal/component/widgets/continue_journey_cta/continue_journey_cta_widget.dart';
 import 'package:gov_driving_license_portal/components/form_apply_license_widget.dart';
 import 'package:gov_portal_core_u_i_nav_cvlv4t/components/generic_footer_componenet_widget.dart';
+import 'package:sentry/sentry.dart';
 
 class DrivingLicenseHomeScreen extends StatefulWidget {
   const DrivingLicenseHomeScreen({
@@ -24,6 +27,20 @@ class _LoginScreenState extends State<DrivingLicenseHomeScreen> {
   void initState() {
     super.initState();
     logAnalytics('initState', {'page': 'Driving Licence Home Screen'});
+    fail();
+  }
+
+  void fail() async {
+    try {
+      throw Exception('Failed function');
+    } catch (exception, stackTrace) {
+      await Sentry.captureException(
+        exception,
+        stackTrace: stackTrace,
+      );
+      getIt.get<CrashReportingManager>().onCrash(exception, stackTrace);
+
+    }
   }
 
   @override
@@ -51,7 +68,6 @@ class _LoginScreenState extends State<DrivingLicenseHomeScreen> {
           const GenericFooterComponenetWidget()
         ],
       ),
-
     );
   }
 }
