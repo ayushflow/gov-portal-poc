@@ -9,6 +9,7 @@ import 'package:gov_client_app/core/di/service_locator.dart';
 import 'package:gov_client_app/core/events/events.dart';
 import 'package:gov_client_app/core/navigation/go_router_config.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
@@ -16,6 +17,7 @@ Future<void> main() async {
     setupLocator();
     initCrashServices();
     initAnalyticsServices();
+    usePathUrlStrategy();
     await SentryFlutter.init(
       (options) {
         options.dsn =
