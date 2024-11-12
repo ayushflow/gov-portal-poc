@@ -13,6 +13,15 @@ import 'package:gov_client_app/features/verhicle_registration/ui/vehicle_registr
 // GoRouter configuration
 final router = GoRouter(
   observers: [getIt<AppNavigationObserver>()],
+  redirect: (context, state) async {
+    /// conditions for decision of movement of
+    /// if logged in, proceed to page with authentication
+    ///
+    /// if logged out, proceed to page without authentication.
+    ///   take user back on the actual page after login if required by app or
+    ///   done by user
+    return null;
+  },
   routes: [
     GoRoute(
       path: '/',
@@ -52,13 +61,17 @@ final router = GoRouter(
         return ContinueJourneyPage();
       },
     ),
-    GoRoute(path: '/forms', builder: (_, __) => FormsLandingPage(), routes: [
-      GoRoute(
-        path: 'form/:formId',
-        builder: (_, state) => FormsPage(
-          id: state.pathParameters['formId'] ?? '-',
+    GoRoute(
+      path: '/forms',
+      builder: (_, __) => FormsLandingPage(),
+      routes: [
+        GoRoute(
+          path: 'form/:formId',
+          builder: (_, state) => FormsPage(
+            id: state.pathParameters['formId'] ?? '-',
+          ),
         ),
-      ),
-    ])
+      ],
+    )
   ],
 );

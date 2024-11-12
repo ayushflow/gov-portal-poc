@@ -22,7 +22,7 @@ class _FormsLandingPageState extends State<FormsLandingPage> {
             16,
             (index) => ElevatedButton(
                 onPressed: () {
-                  context.push('/forms/form/${index + 1}');
+                  context.go('/forms/form/${index + 1}');
                 },
                 child: Text('Form ${index + 1}'))),
       ),
