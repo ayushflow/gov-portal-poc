@@ -54,7 +54,13 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 context.go('/forms/form/16');
               },
-              child: const Text('Go to forms'))
+              child: const Text('Go to forms')),
+
+          ElevatedButton(
+              onPressed: () {
+                context.go('/dashboard/:userId?name=vivek');
+              },
+              child: const Text('Go to Dashboard'))
         ],
       ),
       body: Padding(
